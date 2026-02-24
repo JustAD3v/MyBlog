@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import { useState } from 'react'
+import Home from "./pages/Home.tsx";
 import './App.css'
 
 function App() {
@@ -8,12 +7,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/">
-          {/* Home component */}
-        </Route>
+        <Route path="/" element={<Home/>} />
       </Routes>
     </BrowserRouter>
   )
 }
 
-export default App
+export default App;
