@@ -1,0 +1,71 @@
+/* src/app/components/home.component.css */
+
+/* Container général */
+.home-container {
+  background-color: #1a1b26; /* Tokyo Night background */
+  color: #c0caf5; /* texte clair */
+  min-height: 100vh;
+  padding: 2rem;
+  font-family: 'Fira Code', monospace;
+}
+
+/* Titres */
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #7aa2f7;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #9d7cd8;
+}
+
+/* Liste des articles */
+.articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Carte article */
+.article-card {
+  background-color: #24283b; /* carte plus sombre */
+  border-radius: 0.75rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.article-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Lien dans la carte */
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  padding: 1rem 1.5rem;
+}
+
+/* Contenu de la carte */
+.card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+  color: #7aa2f7;
+}
+
+.card-summary {
+  font-size: 1rem;
+  color: #a9b1d6;
+  margin: 0;
+}

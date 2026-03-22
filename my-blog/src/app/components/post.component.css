@@ -1,0 +1,58 @@
+/* src/app/components/post-detail.component.css */
+
+/* Container général */
+.post-container {
+  background-color: #24283b; /* légèrement plus clair que le fond global */
+  color: #c0caf5; /* texte clair pour lisibilité */
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 1100px;
+  margin: 2rem auto; /* centrer horizontalement */
+  box-shadow: 0 0 15px rgba(122, 162, 247, 0.3); /* petit glow */
+  font-family: 'Fira Code', monospace;
+  line-height: 1.6;
+}
+
+/* Titres générés par Markdown */
+.post-container h1,
+.post-container h2,
+.post-container h3 {
+  color: #7aa2f7; /* bleu Tokyo Night pour titres */
+  margin-top: 1.5rem;
+}
+
+/* Paragraphes */
+.post-container p {
+  color: #a9b1d6;
+  margin-bottom: 1rem;
+}
+
+/* Liens */
+.post-container a {
+  color: #9d7cd8;
+  text-decoration: underline;
+}
+
+/* Code blocks */
+.post-container pre {
+  background-color: #1e2030;
+  color: #9d7cd8;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+/* Inline code */
+.post-container code {
+  background-color: #1e2030;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.3rem;
+  color: #9d7cd8;
+}
+
+/* Loading template */
+.loading-text {
+  color: #c0caf5;
+  text-align: center;
+  margin-top: 2rem;
+}

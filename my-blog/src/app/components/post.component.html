@@ -1,0 +1,8 @@
+<!-- src/app/components/post-detail.component.html -->
+<div *ngIf="content; else loading" class="post-container">
+  <div [innerHTML]="content | safeHtml"></div>
+</div>
+
+<ng-template #loading>
+  <p class="loading-text">Chargement de l'article...</p>
+</ng-template>

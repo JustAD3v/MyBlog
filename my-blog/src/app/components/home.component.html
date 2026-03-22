@@ -1,0 +1,15 @@
+<main class="home-container">
+  <h1 class="title">Bienvenue sur mon blog</h1>
+  <p class="subtitle">Mes derniers articles :</p>
+
+  <ul class="articles-list">
+    <li *ngFor="let post of posts" class="article-card">
+      <a [routerLink]="['/posts', post.id]" class="card-link">
+        <div class="card-content">
+          <h2 class="card-title">{{ post.title }}</h2>
+          <p class="card-summary">{{ post.summary }}</p>
+        </div>
+      </a>
+    </li>
+  </ul>
+</main>
