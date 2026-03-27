@@ -10,10 +10,21 @@
   box-sizing: border-box;
 }
 
-/* styles.css */
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #16161e; /* Tokyo Night background global */
-  font-family: 'Fira Code', monospace;
+.main {
+  display: flex;           /* aligne banner + contenu sur une ligne */
+  height: 100%;
+}
+
+.page-content {
+  flex: 1;                 /* prend tout le reste de la largeur */
+  padding: 1.5rem;
+  overflow-y: auto;        /* scroll si le contenu dépasse */
+  background-color: #1a1b26;
+}
+
+.banner-container {
+  width: 250px;            /* largeur fixe pour la bannière */
+  background-color: #1a1b26;
+  padding: 1rem;
+  border-right: 2px solid #7aa2f7;
 }

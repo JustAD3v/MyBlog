@@ -1,0 +1,89 @@
+.banner {
+  width: 200px;                /* largeur fixe */
+  min-height: 100%;            /* prend toute la hauteur du parent */
+  background-color: #1a1b26;   /* fond Tokyo Night */
+  padding: 1rem;
+  /* border-radius: 1rem;
+  border: 2px solid #7aa2f7;   bordure néon fixe sur toute la zone */
+  /* box-shadow:
+    0 0 8px #7aa2f7,
+    0 0 15px #7aa2f7,
+    0 0 25px #7aa2f7; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;          /* centre les enfants horizontalement */
+  gap: 1rem;
+}
+
+/* Titres */
+.banner h1 {
+  color: #7aa2f7;
+  font-size: 1.5rem;
+  margin: 0;
+  text-align: center;
+}
+
+/* Avatar rond avec glow au hover */
+.avatar-container {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+
+  border: 2px solid #ff39e5;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.avatar-container:hover {
+  box-shadow:
+    0 0 10px #9d7cd8,
+    0 0 20px #9d7cd8;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Texte de présentation */
+.bio {
+  color: #a9b1d6;
+  font-size: 1rem;
+  text-align: center;
+  margin: 0;
+  line-height: 1.3;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+/* Liens/menu */
+.banner-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.banner-nav a {
+  color: #9d7cd8;
+  text-decoration: none;
+  padding: 0.5rem 0.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s, color 0.2s;
+  width: 100%;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+/* Hover uniquement sur les liens */
+.banner-nav a:hover {
+  background-color: #7aa2f7;
+  color: #1a1b26;
+  font-size: 1.15rem;
+}
