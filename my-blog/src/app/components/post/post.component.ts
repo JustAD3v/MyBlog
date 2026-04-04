@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { PostService } from '../services/post.service';
-import { SafeHtmlPipe } from '../pipes/safehtml.pipe';
+import { PostService } from '../../services/post.service';
+import { SafeHtmlPipe } from '../../pipes/safehtml.pipe';
 
 @Component({
   selector: 'app-post',

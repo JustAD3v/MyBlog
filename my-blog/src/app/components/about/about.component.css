@@ -1,0 +1,115 @@
+.profile-container {
+  color: #c0caf5;
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* HEADER */
+.profile-header h1 {
+  color: #7aa2f7;
+  margin-bottom: 1rem;
+}
+
+.profile-header p {
+  color: #a9b1d6;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* SECTIONS */
+.profile-section {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #24283b;
+  border-radius: 1rem;
+  border: 1px solid #7aa2f7;
+  box-shadow: 0 0 10px rgba(122, 162, 247, 0.2);
+}
+
+.profile-section h2 {
+  color: #7aa2f7;
+  margin-bottom: 1rem;
+}
+
+/* LIST */
+.profile-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.profile-section li {
+  margin-bottom: 0.5rem;
+  color: #a9b1d6;
+}
+
+/* STATS CARD */
+.stats-card {
+  padding: 1rem;
+  background-color: #1a1b26;
+  border-radius: 0.5rem;
+  border: 1px dashed #7aa2f7;
+  text-align: center;
+  color: #9d7cd8;
+  width: 50%;
+  margin: 0 auto; 
+}
+
+.social-section {
+  display: block;
+  text-align: center;
+}
+
+.social-section h2 {
+  margin-bottom: 30px;
+}
+
+/* SOCIAL LINKS */
+.social-link {
+  display: flex;              /* active flexbox */
+  align-items: center;        /* aligne verticalement logo + texte */
+  justify-content: center;    /* optionnel (centre tout horizontalement) */
+
+  gap: 0.5rem;                /* espace propre entre logo et texte */
+
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #1a1b26;
+  color: #9d7cd8;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: 0.2s;
+}
+
+.social-links a {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #1a1b26;
+  color: #9d7cd8;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: 0.2s;
+  margin: 0 auto 1.5rem;
+  width: 20%;
+}
+
+.social-links a:hover {
+  border: 1px solid #7aa2f7;
+  box-shadow: 0 0 10px #7aa2f7;
+  color: #7aa2f7;
+}
+
+/* QUOTE */
+.profile-quote {
+  margin-top: 2rem;
+  text-align: center;
+  color: #7aa2f7;
+  font-style: italic;
+}
+
+.social-link img {
+  width: 25px;
+  height: 25px;
+  filter: invert(80%) sepia(10%) saturate(500%) hue-rotate(200deg);
+  margin-right: 15px;
+}
