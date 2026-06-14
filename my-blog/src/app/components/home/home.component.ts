@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { PostService } from '../../services/post.service';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +11,8 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  posts = [
-    { id: 1, title: 'Mon premier article', summary: 'Petit résumé du premier article.' },
-    { id: 2, title: 'Deuxième article', summary: 'Aperçu du deuxième article.' }
-  ];
+  posts: any;
+  constructor(private postService: PostService) {
+    this.posts = this.postService.getPosts();
+  }
 }

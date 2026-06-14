@@ -15,10 +15,10 @@ export class PostComponent {
   content = '';
 
   constructor(private route: ActivatedRoute, private postService: PostService) {
-    const id = this.route.snapshot.paramMap.get('id'); // récupère l'id dans l'URL
+    const id = this.route.snapshot.paramMap.get('id'); // get id from URL
     if (id) {
-      this.postService.loadPost(`article${id}.md`).subscribe(html => {
-        this.content = html; // le HTML est injecté dans le template
+      this.postService.getPost(id).subscribe(html => {
+        this.content = html; // HTML injected in the component's html
       });
     }
   }
