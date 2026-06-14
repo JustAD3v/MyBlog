@@ -32,3 +32,10 @@
   overflow: hidden;
   border-right: 2px solid #7aa2f7;
 }
+
+/* hide banner if screen is too small*/
+@media (max-width: 768px) {
+  .banner-container {
+    display: none;
+  }
+}

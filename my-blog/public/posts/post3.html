@@ -93,7 +93,7 @@ object-fit: contain;
 Size of Rules : 248</code></pre>
 <p>Bingo !</p>
 <h2 id="the-vuln">The vuln</h2>
-<p>I quickly noticed something wrong in the options of the menu :</p>
+<p>I noticed something wrong in the options of the menu :</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>choice <span class="op">==</span> <span class="ch">&#39;3&#39;</span><span class="op">)</span> <span class="op">{</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>            g<span class="op">-&gt;</span>rules<span class="op">-&gt;</span>destroy<span class="op">(</span>g<span class="op">-&gt;</span>rules<span class="op">);</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>            puts<span class="op">(</span><span class="st">&quot;Choose the rules :&quot;</span><span class="op">);</span></span>
