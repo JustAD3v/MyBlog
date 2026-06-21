@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { PostService } from '../../services/post.service';
+import { MobileService } from '../../services/mobileService';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ import { PostService } from '../../services/post.service';
 })
 export class HomeComponent {
   posts: any;
-  constructor(private postService: PostService) {
+  constructor(private postService: PostService, public mbService: MobileService) {
     this.posts = this.postService.getPosts();
   }
 }

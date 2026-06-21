@@ -3,6 +3,10 @@
   <div [innerHTML]="content | safeHtml"></div>
 </div>
 
+<div id="lightbox" class="lightbox hidden">
+  <img id="lightboxImg" />
+</div>
+
 <ng-template #loading>
   <p class="loading-text">Chargement de l'article...</p>
 </ng-template>
