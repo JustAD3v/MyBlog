@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+
+<style type="text/css">.pandoc-post {
+background: #1a1b26;
+color: #c0caf5;
+padding: 2.5rem 3rem;
+border-radius: 1rem;
+font-family: "Inter", "Segoe UI", sans-serif;
+line-height: 1.75;
+width: 100%;
+box-sizing: border-box;
+box-shadow: 0 0 25px rgba(122, 162, 247, 0.15);
+}
+.pandoc-post h1,
+.pandoc-post h2,
+.pandoc-post h3,
+.pandoc-post h4 {
+color: #7aa2f7;
+}
+.pandoc-post a {
+color: #7aa2f7;
+}
+.pandoc-post p {
+color: #c0caf5;
+}
+.pandoc-post blockquote {
+border-left: 4px solid #7aa2f7;
+padding-left: 1rem;
+color: #a9b1d6;
+font-style: italic;
+background: rgba(36, 40, 59, 0.4);
+}
+.pandoc-post div.sourceCode {
+background: #24283b;
+border-radius: 10px;
+padding: 1rem;
+overflow-x: auto;
+border: 1px solid #2f3549;
+margin: 1.5rem 0;
+}
+.pandoc-post pre.sourceCode {
+background: transparent;
+margin: 0;
+padding: 0;
+}
+.pandoc-post code.sourceCode {
+background: transparent;
+color: #c0caf5;
+font-family: "JetBrains Mono", monospace;
+display: block;
+white-space: pre;
+}
+.pandoc-post .kw { color: #c792ea; font-weight: 500; }
+.pandoc-post .st { color: #a6e3a1; }
+.pandoc-post .co { color: #5c6370; font-style: italic; }
+.pandoc-post .fu { color: #61afef; }
+.pandoc-post .va { color: #e06c75; }
+.pandoc-post .dv { color: #d19a66; }
+.pandoc-post .op { color: #56b6c2; }
+.pandoc-post .dt { color: #e5c07b; }
+.pandoc-post img {
+display: block;
+max-width: 100%;
+width: 100%;
+height: auto;
+margin: 1.5rem auto;
+border-radius: 0.5rem;
+object-fit: contain;
+}
+</style>
+</head>
+
+<body>
+
+<div class="pandoc-post">
+<h1 id="déjeuner-à-lanssi">Déjeuner à l’ANSSI</h1>
+<h2 id="the-challenge">The Challenge</h2>
+<p>We are only given this simple code :</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Crypto.PublicKey <span class="im">import</span> RSA</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Crypto.Util.number <span class="im">import</span> long_to_bytes</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> encrypt(key, pl):</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">pow</span>(pl, key.e, key.n)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> decrypt(key, ct):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">pow</span>(ct, key.d, key.n)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    key <span class="op">=</span> RSA.generate(<span class="dv">2048</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    flag <span class="op">=</span> os.getenv(<span class="st">&quot;FLAG&quot;</span>, <span class="st">&quot;404CTF</span><span class="sc">{Fake_Flag}</span><span class="st">&quot;</span>).encode()</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;[INFO] Bienvenue dans le système interne de récupération des données. Voici les paramètres publiques :&quot;</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">str</span>({</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;n&quot;</span>: key.n,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;e&quot;</span>: key.e,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;encrypted_flag&quot;</span>: encrypt(key, <span class="bu">int</span>(flag.<span class="bu">hex</span>(), <span class="dv">16</span>))</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    }))</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;[SAISIE] Veuillez entrer un message à déchiffrer :&quot;</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        userinput <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">&quot;&gt; &quot;</span>))</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;[ERREUR] Entrée invalide. Veuillez entrer un entier.&quot;</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        exit(<span class="dv">1</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> decrypt(key, userinput)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> flag <span class="kw">in</span> long_to_bytes(result):</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;[ALERTE] Tentative d&#39;accès à des données sensibles détectée.&quot;</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;[SUCCÈS] Voici le résulat du calcul :&quot;</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="bu">str</span>(result))</span></code></pre></div>
+<p>This is a classic chosen cyphertext attack on RSA (with no padding) with a decypher oracle.</p>
+<h2 id="the-problem">The problem</h2>
+<p>We are given the cyphertext of the flag and we can decypher any decypher we want. Seems easy right ?</p>
+<p>But the twist is we can’t directly decrypt the flag cyphertext because if the decrypted plaintext contains the flag the programm reject our input. Sow we just need to modify a little bit the encrypted flag in a way that when decrypted it does not contain teh flag but we can still deduce what it was.</p>
+<h2 id="rsa-homomorphism">RSA homomorphism</h2>
+<p>The key of this challenge is to use RSA homomorphism property which is :</p>
+<p><strong>enc(a) * enc(b) = enc(a * b)</strong></p>
+<p>This way if a is our encrypted_flag : a = encrypted_flag = enc(flag) and b is a known value that we choose. Since we know the public key parameters : <code>key.n</code> and <code>key.e</code>, we can encrypt b to get enc(b) and send : enc(b) * encrypted_flag .</p>
+<p>The oracle will give us : result dec(enc(flag) * enc(b)) = dec(enc(flag * b<em>)) = flag </em> b</p>
+<p>This surely does not contain flag so it passes the security check. But we can still recover it by dividing result by our known b !</p>
+<p>Here’s the final solve script :</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Crypto.Util.number <span class="im">import</span> long_to_bytes</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> encrypt(e, n, pl):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">pow</span>(pl, e, n)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>HOST <span class="op">=</span> <span class="st">&quot;challenge.404ctf.fr&quot;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>PORT <span class="op">=</span> <span class="dv">10005</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> remote(HOST, PORT)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>r.recvuntil(<span class="st">b&quot;publiques :</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> json.loads(r.recvline().strip().replace(<span class="st">b&quot;&#39;&quot;</span>, <span class="st">b&quot;</span><span class="ch">\&quot;</span><span class="st">&quot;</span>).decode())</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>known <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>userinput <span class="op">=</span> encrypt(<span class="bu">int</span>(params[<span class="st">&quot;e&quot;</span>]), <span class="bu">int</span>(params[<span class="st">&quot;n&quot;</span>]), known) <span class="op">*</span> <span class="bu">int</span>(params[<span class="st">&quot;encrypted_flag&quot;</span>])</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>r.sendlineafter(<span class="st">b&quot;&gt; &quot;</span>, <span class="bu">str</span>(userinput).encode())</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>r.recvuntil(<span class="st">b&quot;du calcul :</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="bu">int</span>(r.recvline().strip())</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>flag <span class="op">=</span> result <span class="op">//</span> known</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>flag <span class="op">=</span> long_to_bytes(flag)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>log.info(<span class="ss">f&quot;FLAG : </span><span class="sc">{</span>flag<span class="sc">.</span>decode()<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>r.close()</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
+<p><strong><u>FLAG</u></strong> : 404CTF{Luncht1m3_4tt4ck_b35t_4tt4ck}</p>
+</div>
+
+</body>
+</html>
