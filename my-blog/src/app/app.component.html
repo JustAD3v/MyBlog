@@ -1,6 +1,10 @@
 <main class="main">
     <div class="banner-container">
-        <app-banner></app-banner>
+        @if(mbService.isMobile()) {
+            <app-banner-mobile></app-banner-mobile>
+        } @else {
+            <app-banner></app-banner>    
+        }
     </div>
     <div class="page-content">
         <router-outlet />

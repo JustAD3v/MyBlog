@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { BannerToggleService } from '../../services/bannerToggle.service';
 
 @Component({
   selector: 'app-banner',
@@ -11,12 +10,12 @@ import { BannerToggleService } from '../../services/bannerToggle.service';
 })
 
 export class BannerComponent {
-  bannerService = inject(BannerToggleService);
+  // bannerService = inject(BannerToggleService);
 
-  toggle() {
-    if (this.bannerService.isMobile) {
-      console.log("clicked on mobile !")
-      this.bannerService.toggleBanner();
-    }
-  }
+  // toggle() {
+  //   if (this.bannerService.isMobile) {
+  //     console.log("clicked on mobile !")
+  //     this.bannerService.toggleBanner();
+  //   }
+  // }
 }

@@ -1,0 +1,72 @@
+.banner {
+  width: 100%;                /* largeur fixe */
+  min-height: 100%;            /* prend toute la hauteur du parent */
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;          
+  gap: 1rem;
+}
+
+/* Titres */
+.banner h1 {
+  color: #7aa2f7;
+  font-size: 1.5rem;
+  margin: 0;
+  text-align: center;
+}
+
+/* Avatar rond avec glow au hover */
+.avatar-container {
+  width: 60px;
+  height: auto;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+  margin-right: 20px;
+  margin-left: 10px;
+
+  border: 2px solid #ff39e5;
+}
+
+.avatar-container:hover {
+  box-shadow:
+    0 0 10px #9d7cd8,
+    0 0 20px #9d7cd8;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Liens/menu */
+.banner-nav {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  width: auto;
+  align-items: center;
+}
+
+.banner-nav a {
+  color: #9d7cd8;
+  text-decoration: none;
+  padding: 0.5rem 0.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s, color 0.2s;
+  width: auto;
+  white-space: nowrap;
+  text-align: center;
+  font-size: 1.1rem;
+  margin: 4vw;
+}
+
+/* Hover uniquement sur les liens */
+.banner-nav a:hover {
+  background-color: #7aa2f7;
+  color: #1a1b26;
+  font-size: 1.15rem;
+}

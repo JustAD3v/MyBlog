@@ -5,13 +5,13 @@
   background-color: #1a1b26; /* Tokyo Night background */
   color: #c0caf5; /* texte clair */
   min-height: 100vh;
-  padding: 2rem;
+  padding: 1rem;
   font-family: 'Fira Code', monospace;
 }
 
 /* Titres */
 .title {
-  font-size: 2.5rem;
+  font-size: 2.1rem;
   margin-bottom: 0.5rem;
   color: #7aa2f7;
 }
@@ -68,4 +68,16 @@
   font-size: 1rem;
   color: #a9b1d6;
   margin: 0;
+}
+
+.presentation {
+  background-color: #24283b;
+  padding-left: 15px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  border-radius: 1rem;
+
+  border: 1.2px solid #eb31fc;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
