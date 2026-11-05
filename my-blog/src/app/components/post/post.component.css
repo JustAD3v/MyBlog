@@ -6,7 +6,7 @@
 .post-container {
   padding: 1.5rem 2rem;
   margin: 0 auto;
-  max-width: 1000px;
+  max-width: 1100px;
   color: var(--text);
   background-color: var(--panel);
   backdrop-filter: blur(var(--panel-blur));

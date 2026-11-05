@@ -15,7 +15,7 @@
 
 .page-content {
   flex: 1;                 /* prend tout le reste de la largeur */
-  padding: 1.5rem;
+  padding: 1rem;
   overflow-y: auto;        /* scroll si le contenu dépasse */
   scrollbar-width: none;
   background: transparent;

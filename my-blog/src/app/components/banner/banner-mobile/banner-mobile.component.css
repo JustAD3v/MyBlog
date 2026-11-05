@@ -18,8 +18,10 @@
 
 /* Avatar rond avec glow au hover */
 .avatar-container {
-  width: 60px;
-  height: auto;
+  width: 70px;
+  height: 70px;
+  flex: 0 0 auto;
+  box-sizing: border-box;
   border-radius: 50%;
   overflow: hidden;
   transition: box-shadow 0.2s;
