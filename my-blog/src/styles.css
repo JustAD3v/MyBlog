@@ -4,7 +4,7 @@
 :root {
   /* Wallpaper: drop your image in `public/` and update the file name below.
      Set --wallpaper-blur to 0px if the image is already blurred. */
-  --wallpaper: url('/wallpaper.jpg');
+  --wallpaper: url('./wallpaper.jpg');
   --wallpaper-blur: 16px;
   --wallpaper-dim: 0.55;
 
