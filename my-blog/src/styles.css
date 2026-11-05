@@ -4,7 +4,7 @@
 :root {
   /* Wallpaper: drop your image in `public/` and update the file name below.
      Set --wallpaper-blur to 0px if the image is already blurred. */
-  --wallpaper: url('/background.jpg');
+  --wallpaper: url('/wallpaper.jpg');
   --wallpaper-blur: 16px;
   --wallpaper-dim: 0.55;
 
@@ -33,9 +33,18 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: var(--bg-base);
   color: var(--text);
   font-family: 'Fira Code', monospace;
+}
+
+/* Base color on <html> only. A background on <body> would hide the
+   wallpaper layer below, since body::before sits at a negative z-index. */
+html {
+  background-color: var(--bg-base);
+}
+
+body {
+  background-color: transparent;
 }
 
 /* Wallpaper layer. Oversized so the blur does not fade out at the edges. */
