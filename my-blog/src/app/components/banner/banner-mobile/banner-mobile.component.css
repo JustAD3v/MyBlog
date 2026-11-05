@@ -18,8 +18,10 @@
 
 /* Avatar rond avec glow au hover */
 .avatar-container {
-  width: 60px;
-  height: auto;
+  width: 70px;
+  height: 70px;
+  flex: 0 0 auto;
+  box-sizing: border-box;
   border-radius: 50%;
   overflow: hidden;
   transition: box-shadow 0.2s;
@@ -66,7 +68,7 @@
 
 /* Hover uniquement sur les liens */
 .banner-nav a:hover {
-  background-color: #7aa2f7;
-  color: #1a1b26;
-  font-size: 1.15rem;
+  background-color: var(--accent);
+  color: #16161e;
+  box-shadow: 0 6px 14px -6px rgba(0, 0, 0, 0.8), 0 0 12px rgba(122, 162, 247, 0.45);
 }
