@@ -1,19 +1,16 @@
 :host {
   display: block;
-  min-height: 100vh;
-  margin: 1rem;
-  padding: 1.5rem;
-  border-radius: 1rem;
-  border: 2px solid #7aa2f7; /* contour bleu Tokyo Night */
-  background-color: #1a1b26;
-  box-shadow: 0 0 15px rgba(122, 162, 247, 0.4);
+  height: 100vh;
+  padding: 1rem;
+  background: transparent;
   box-sizing: border-box;
 }
 
 .main {
   display: flex;
-  height: 100vh;          
-  overflow: hidden;       
+  height: 100%;
+  gap: 1rem;
+  overflow: hidden;
 }
 
 .page-content {
@@ -21,34 +18,42 @@
   padding: 1.5rem;
   overflow-y: auto;        /* scroll si le contenu dépasse */
   scrollbar-width: none;
-  background-color: #1a1b26;
+  background: transparent;
 }
 
+/* Banner: detached floating panel */
 .banner-container {
   width: 250px;
-  height: 100vh;          
+  flex: 0 0 250px;
+  height: 100%;
   position: sticky;
   top: 0;
   overflow: hidden;
-  border-right: 2px solid #7aa2f7;
+  box-sizing: border-box;
+  background-color: var(--panel);
+  backdrop-filter: blur(var(--panel-blur));
+  -webkit-backdrop-filter: blur(var(--panel-blur));
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow), var(--glow);
 }
 
 /* mobile style */
 @media (max-width: 768px) {
   .main {
     flex-direction: column;
+    gap: 0.6rem;
   }
   .banner-container {
-    width: 100vw;
+    width: 100%;
+    flex: 0 0 auto;
     height: 11vh;
-    background-color: #24283b;
-    border-bottom: 2px solid #7aa2f7;  
+    position: static;
   }
 
   :host {
-    padding: 0;
+    padding: 0.5rem;
     overflow: hidden;
-    margin: 0.2rem;
   }
 
   .page-content {

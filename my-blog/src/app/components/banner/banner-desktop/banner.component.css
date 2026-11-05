@@ -1,14 +1,9 @@
 .banner {
-  width: 200px;                /* largeur fixe */
+  width: 100%;                 /* le panneau parent porte la largeur */
   min-height: 100%;            /* prend toute la hauteur du parent */
-  background-color: #1a1b26;   /* fond Tokyo Night */
+  background: transparent;     /* le fond vient du panneau parent */
   padding: 1rem;
-  /* border-radius: 1rem;
-  border: 2px solid #7aa2f7;   bordure néon fixe sur toute la zone */
-  /* box-shadow:
-    0 0 8px #7aa2f7,
-    0 0 15px #7aa2f7,
-    0 0 25px #7aa2f7; */
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;          /* centre les enfants horizontalement */
@@ -72,11 +67,14 @@
 }
 
 .banner-nav a {
-  color: #9d7cd8;
+  color: var(--accent-alt);
   text-decoration: none;
   padding: 0.5rem 0.5rem;
   border-radius: 0.5rem;
-  transition: background-color 0.2s, color 0.2s;
+  background-color: var(--panel-inner);
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
   width: 100%;
   text-align: center;
   font-size: 1.1rem;
@@ -84,7 +82,8 @@
 
 /* Hover uniquement sur les liens */
 .banner-nav a:hover {
-  background-color: #7aa2f7;
-  color: #1a1b26;
-  font-size: 1.15rem;
+  background-color: var(--accent);
+  color: #16161e;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px -6px rgba(0, 0, 0, 0.8), 0 0 14px rgba(122, 162, 247, 0.45);
 }

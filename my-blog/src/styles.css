@@ -1,9 +1,72 @@
 /* You can add global styles to this file, and also import other style files */
 /* styles.css */
+
+:root {
+  /* Wallpaper: drop your image in `public/` and update the file name below.
+     Set --wallpaper-blur to 0px if the image is already blurred. */
+  --wallpaper: url('/background.jpg');
+  --wallpaper-blur: 16px;
+  --wallpaper-dim: 0.55;
+
+  /* Base colors (Tokyo Night) */
+  --bg-base: #16161e;
+  --text: #c0caf5;
+  --text-dim: #a9b1d6;
+  --accent: #7aa2f7;
+  --accent-alt: #9d7cd8;
+  --accent-hot: #ff39e5;
+
+  /* Detached panels */
+  --panel: rgba(32, 36, 54, 0.78);
+  --panel-inner: rgba(22, 23, 34, 0.72);
+  --panel-border: rgba(122, 162, 247, 0.28);
+  --panel-blur: 14px;
+  --radius: 1rem;
+
+  /* Elevation: what makes panels read as floating above the wallpaper */
+  --shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.8), 0 2px 8px rgba(0, 0, 0, 0.45);
+  --shadow-hi: 0 26px 54px -14px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(122, 162, 247, 0.4);
+  --glow: 0 0 18px rgba(122, 162, 247, 0.25);
+}
+
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #1a1b26; /* Tokyo Night dark mode */
+  background-color: var(--bg-base);
+  color: var(--text);
   font-family: 'Fira Code', monospace;
+}
+
+/* Wallpaper layer. Oversized so the blur does not fade out at the edges. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: calc(-1 * var(--wallpaper-blur) * 3);
+  z-index: -2;
+  background: var(--wallpaper) center / cover no-repeat, var(--bg-base);
+  filter: blur(var(--wallpaper-blur)) saturate(1.05);
+}
+
+/* Dark blue/purple tint over the wallpaper, so panels and text stay readable. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 20% 0%, rgba(122, 162, 247, 0.14), transparent 60%),
+    radial-gradient(100% 80% at 90% 100%, rgba(157, 124, 216, 0.16), transparent 60%),
+    linear-gradient(rgba(22, 22, 30, var(--wallpaper-dim)), rgba(22, 22, 30, var(--wallpaper-dim)));
+}
+
+/* Reusable detached-panel look */
+.panel {
+  background-color: var(--panel);
+  backdrop-filter: blur(var(--panel-blur));
+  -webkit-backdrop-filter: blur(var(--panel-blur));
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
